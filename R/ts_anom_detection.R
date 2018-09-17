@@ -74,7 +74,7 @@ AnomalyDetectionTs <- function(x, max_anoms = 0.10, direction = 'pos',
       stop("data must be a 2 column data.frame, with the first column being a set of timestamps, and the second coloumn being numeric values.")
     }
     # Format timestamps if necessary
-    if (!(class(x[[1]])[1] == "POSIXlt")) {
+    if (!(class(x[[1]])[1] == "POSIXct")) {
       x <- format_timestamp(x)
     }
   }
@@ -353,7 +353,7 @@ AnomalyDetectionTs <- function(x, max_anoms = 0.10, direction = 'pos',
 
   # Make sure we're still a valid POSIXlt datetime.
   # TODO: Make sure we keep original datetime format and timezone.
-  anoms$timestamp <- as.POSIXlt(anoms$timestamp, tz="UTC")
+  anoms$timestamp <- as.POSIXct(anoms$timestamp, tz="UTC")
 
   # Lastly, return anoms and optionally the plot if requested by the user
   if(plot){
